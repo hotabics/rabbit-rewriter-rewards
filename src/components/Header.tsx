@@ -8,10 +8,10 @@ const Header = () => {
   const currentPath = location.pathname;
 
   const navItems = [
-    { path: "/", label: "Sākums", icon: "🏠" },
+    { path: "/", label: "Home", icon: "🏠" },
     { path: "/demo", label: "Demo", icon: "🎬" },
-    { path: "/documentation", label: "Dokumentācija", icon: "📖" },
-    { path: "/support", label: "Atbalsts", icon: "💬" }
+    { path: "/documentation", label: "Documentation", icon: "📖" },
+    { path: "/support", label: "Support", icon: "💬" }
   ];
 
   const isActive = (path: string) => currentPath === path;
@@ -55,7 +55,7 @@ const Header = () => {
           <details className="relative">
             <summary className="list-none">
               <Button variant="outline" size="sm">
-                ☰ Izvēlne
+                ☰ Menu
               </Button>
             </summary>
             <div className="absolute right-0 top-full mt-2 w-48 bg-background border rounded-lg shadow-lg p-2 space-y-1">

@@ -77,7 +77,7 @@ const Index = () => {
                 variant="outline" 
                 className="bg-yellow-400/10 border-yellow-400 text-yellow-600 hover:bg-yellow-400/20 px-6 py-3"
               >
-                ☕ Ja patīk White Rabbit - Buy Me a Coffee
+                ☕ If you like White Rabbit - Buy Me a Coffee
               </Button>
             </a>
           </div>
@@ -239,7 +239,7 @@ const Index = () => {
                 size="sm"
                 className="bg-yellow-400/10 border-yellow-400 text-yellow-600 hover:bg-yellow-400/20"
               >
-                ☕ Atbalsti White Rabbit
+                ☕ Support White Rabbit
               </Button>
             </a>
           </div>
