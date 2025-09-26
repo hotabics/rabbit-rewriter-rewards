@@ -9,7 +9,6 @@ import Index from "./pages/Index";
 import Documentation from "./pages/Documentation";
 import Support from "./pages/Support";
 import Demo from "./pages/Demo";
-import QwasarProject from "./pages/QwasarProject";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -25,7 +24,6 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/demo" element={<Demo />} />
-          <Route path="/qwasar" element={<QwasarProject />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/support" element={<Support />} />
           <Route path="*" element={<NotFound />} />
