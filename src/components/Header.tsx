@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import icon512 from "@/assets/icon512.png";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const location = useLocation();
@@ -22,7 +22,7 @@ const Header = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <img 
-            src={icon512} 
+            src={logo} 
             alt="White Rabbit" 
             className="w-10 h-10 rounded-lg shadow-md"
           />
