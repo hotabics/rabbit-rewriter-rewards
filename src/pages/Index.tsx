@@ -206,11 +206,11 @@ const Index = () => {
             <Link to="/documentation" className="text-muted-foreground hover:text-primary transition-colors">
               Documentation
             </Link>
+            <Link to="/support" className="text-muted-foreground hover:text-primary transition-colors">
+              Support
+            </Link>
             <a href="https://github.com/hotabics/rabbit-rewriter-rewards" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               GitHub
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Support
             </a>
           </div>
         </div>
