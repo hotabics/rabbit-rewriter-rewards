@@ -13,9 +13,12 @@ import {
   TrendingUp,
   Clock,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Lock
 } from "lucide-react";
+import { toast } from "sonner";
 import icon512 from "@/assets/icon512.png";
+import UpsellModal from "./UpsellModal";
 
 const WhiteRabbitWidget = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -29,6 +32,8 @@ const WhiteRabbitWidget = () => {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [lastAction, setLastAction] = useState("");
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
 
   const simulateAction = (action: string, xpGain: number) => {
     setIsProcessing(true);
@@ -43,7 +48,26 @@ const WhiteRabbitWidget = () => {
         coins: prev.coins + Math.floor(xpGain / 2)
       }));
       setIsProcessing(false);
+      
+      toast.success(`${action} completed! +${xpGain} XP earned`, {
+        description: "Keep learning with White Rabbit! 🐰",
+      });
     }, 1500);
+  };
+
+  const handlePremiumFeature = (featureName: string) => {
+    if (isPremium) {
+      simulateAction(featureName, 15);
+    } else {
+      setShowUpsell(true);
+    }
+  };
+
+  const handleUpgrade = () => {
+    setIsPremium(true);
+    toast.success("Welcome to Premium! 🎉", {
+      description: "All premium features are now unlocked!",
+    });
   };
 
   const xpProgress = (stats.xp / stats.xpToNext) * 100;
@@ -72,7 +96,14 @@ const WhiteRabbitWidget = () => {
                   )}
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm">White Rabbit</h3>
+                  <h3 className="font-bold text-sm flex items-center gap-2">
+                    White Rabbit
+                    {isPremium && (
+                      <Badge className="text-xs bg-gradient-to-r from-yellow-400 to-yellow-600 text-black">
+                        ⭐ Premium
+                      </Badge>
+                    )}
+                  </h3>
                   <p className="text-xs text-muted-foreground">Level {stats.level}</p>
                 </div>
               </div>
@@ -166,6 +197,36 @@ const WhiteRabbitWidget = () => {
                       Explain
                     </Button>
                   </div>
+                  
+                  {/* Premium Features */}
+                  <div className="space-y-2 mt-3">
+                    <div className="text-xs text-muted-foreground">Premium Features:</div>
+                    <div className="grid grid-cols-1 gap-2">
+                      <Button
+                        size="sm"
+                        variant={isPremium ? "outline" : "ghost"}
+                        onClick={() => handlePremiumFeature("Interactive Task")}
+                        disabled={isProcessing}
+                        className={`text-xs h-8 ${!isPremium ? 'opacity-60' : ''}`}
+                      >
+                        {!isPremium && <Lock className="h-3 w-3 mr-1" />}
+                        <Zap className="h-3 w-3 mr-1" />
+                        {isPremium ? "Interactive Task" : "🔒 Interactive Task"}
+                      </Button>
+                      
+                      <Button
+                        size="sm"
+                        variant={isPremium ? "outline" : "ghost"}
+                        onClick={() => handlePremiumFeature("Podcast Audio")}
+                        disabled={isProcessing}
+                        className={`text-xs h-8 ${!isPremium ? 'opacity-60' : ''}`}
+                      >
+                        {!isPremium && <Lock className="h-3 w-3 mr-1" />}
+                        <Sparkles className="h-3 w-3 mr-1" />
+                        {isPremium ? "Podcast Audio" : "🔒 Podcast Audio"}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Processing Status */}
@@ -212,6 +273,13 @@ const WhiteRabbitWidget = () => {
           </Badge>
         </div>
       )}
+      
+      {/* Upsell Modal */}
+      <UpsellModal 
+        isOpen={showUpsell}
+        onClose={() => setShowUpsell(false)}
+        onUpgrade={handleUpgrade}
+      />
     </div>
   );
 };
