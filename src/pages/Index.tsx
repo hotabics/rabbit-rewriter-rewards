@@ -50,6 +50,11 @@ const Index = () => {
             <Button size="lg" className="wr-button-primary text-lg px-8 py-6">
               📁 Load Extension
             </Button>
+            <Link to="/demo">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
+                🎬 Try Demo
+              </Button>
+            </Link>
             <Link to="/documentation">
               <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                 📖 View Documentation
