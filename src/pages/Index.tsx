@@ -14,9 +14,14 @@ const Index = () => {
             <img src={icon512} alt="White Rabbit Icon" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-xl wr-gradient-primary p-4" />
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            White Rabbit
-          </h1>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              White Rabbit
+            </h1>
+            <Badge className="bg-green-500 text-white text-lg px-4 py-2 font-bold animate-pulse">
+              FREE
+            </Badge>
+          </div>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
             Feed & Follow
@@ -46,7 +51,7 @@ const Index = () => {
             </Badge>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button size="lg" className="wr-button-primary text-lg px-8 py-6">
               📁 Load Extension
             </Button>
@@ -60,6 +65,21 @@ const Index = () => {
                 📖 View Documentation
               </Button>
             </Link>
+          </div>
+
+          <div className="flex justify-center">
+            <a 
+              href="https://buymeacoffee.com/whiterabbit.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button 
+                variant="outline" 
+                className="bg-yellow-400/10 border-yellow-400 text-yellow-600 hover:bg-yellow-400/20 px-6 py-3"
+              >
+                ☕ Ja patīk White Rabbit - Buy Me a Coffee
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -204,9 +224,26 @@ const Index = () => {
           <div className="mb-6">
             <img src={icon512} alt="White Rabbit" className="w-12 h-12 mx-auto rounded-lg wr-gradient-primary p-2" />
           </div>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground mb-6">
             Follow the White Rabbit down the productivity hole! 🐰⚡
           </p>
+          
+          <div className="flex justify-center mb-6">
+            <a 
+              href="https://buymeacoffee.com/whiterabbit.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="bg-yellow-400/10 border-yellow-400 text-yellow-600 hover:bg-yellow-400/20"
+              >
+                ☕ Atbalsti White Rabbit
+              </Button>
+            </a>
+          </div>
+          
           <div className="flex justify-center gap-6">
             <Link to="/documentation" className="text-muted-foreground hover:text-primary transition-colors">
               Documentation
