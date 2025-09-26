@@ -2,13 +2,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Wand2, Copy, Check, Sparkles } from "lucide-react";
+import { Wand2, Copy, Check, Sparkles, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const QwasarProject = () => {
   const [isTransformed, setIsTransformed] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [isRetransforming, setIsRetransforming] = useState(false);
+  const [alternativeTransform, setAlternativeTransform] = useState(false);
   const { toast } = useToast();
 
   const originalContent = `Complete an index.html file with the missing javascript code in order to replicate the famous Windows Screensaver - Bounce
@@ -56,6 +59,35 @@ You cannot change the value of the html, moving the box needs to be done using j
 🎨 **Galīgais rezultāts:**
 Kastīte lēkās pa ekrānu kā vecajā Windows! 🏃‍♂️💨`;
 
+  const alternativeTransformedContent = `🎯 Vienkārši: Izveidojam animāciju!
+
+🧩 **Ko mēs darām?**
+Mēs veidojam mājas lapā kastīti, kas kustas!
+
+📋 **Tavs darbs pa punktiem:**
+
+1️⃣ **Sāc ar kastīti**
+   • HTML failā jau ir kastīte ar ID "my_bouncing_box"
+   • Nedrīkst mainīt HTML daļu!
+
+2️⃣ **Raksti JavaScript kodu**
+   • Izmanto: document.getElementById("my_bouncing_box")
+   • Tas atrod mūsu kastīti
+
+3️⃣ **Liec kastītei kustēties**
+   • Mainām .style.left (kustas pa kreisi/labi)
+   • Mainām .style.top (kustas uz augšu/leju)
+
+4️⃣ **Izveidojam "atleci"**
+   • Kad kastīte sasniedz malu, mainām virzienu
+   • Izmantojam if/else (ja/citādi)
+
+5️⃣ **Uztaisām atkārtojumu**
+   • setInterval(function, 500) - atkārto ik pēc 0.5 sekundēm
+   • Funkcijā rakstām kustības kodu
+
+💡 **Padoms:** Sāc ar to, ka kastīte kustas tikai pa labi!`;
+
   const handleTransform = () => {
     setIsProcessing(true);
     
@@ -63,6 +95,7 @@ Kastīte lēkās pa ekrānu kā vecajā Windows! 🏃‍♂️💨`;
     setTimeout(() => {
       setIsTransformed(true);
       setIsProcessing(false);
+      setShowFeedback(true);
       toast({
         title: "Teksts pārveidots!",
         description: "Uzdevums tagad ir piemērots 5. klases skolēnam.",
@@ -70,9 +103,33 @@ Kastīte lēkās pa ekrānu kā vecajā Windows! 🏃‍♂️💨`;
     }, 2000);
   };
 
+  const handleThumbsUp = () => {
+    toast({
+      title: "Paldies par atsauksmēm! 👍",
+      description: "Priecājamies, ka teksts ir saprotams!",
+    });
+    setShowFeedback(false);
+  };
+
+  const handleThumbsDown = () => {
+    setIsRetransforming(true);
+    setShowFeedback(false);
+    
+    // Simulate re-transformation
+    setTimeout(() => {
+      setAlternativeTransform(true);
+      setIsRetransforming(false);
+      toast({
+        title: "Teksts pārveidots citādi!",
+        description: "Mēģinājām padarīt to vēl vienkāršāku.",
+      });
+    }, 2000);
+  };
+
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(transformedContent);
+      const contentToCopy = alternativeTransform ? alternativeTransformedContent : transformedContent;
+      await navigator.clipboard.writeText(contentToCopy);
       setCopied(true);
       toast({
         title: "Nokopēts!",
@@ -216,20 +273,30 @@ Kastīte lēkās pa ekrānu kā vecajā Windows! 🏃‍♂️💨`;
                       </div>
                     )}
 
+                    {/* Retransforming State */}
+                    {isRetransforming && (
+                      <div className="p-4 bg-blue-900/20 rounded-lg border border-blue-500/30">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                          <div className="text-blue-300">White Rabbit mēģina citādi...</div>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Transformed Content */}
-                    {isTransformed && (
+                    {isTransformed && !isRetransforming && (
                       <div className="space-y-4 animate-fade-in">
                         <div className="p-4 bg-green-900/20 rounded-lg border border-green-500/30">
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-lg font-semibold text-green-300">
-                              Pārveidots 5. klases skolēnam:
+                              {alternativeTransform ? "Pārveidots vēl vienkāršāk:" : "Pārveidots 5. klases skolēnam:"}
                             </h4>
                             <Badge variant="outline" className="text-green-300 border-green-500/50">
                               White Rabbit rezultāts
                             </Badge>
                           </div>
                           <div className="text-gray-200 whitespace-pre-line mb-4">
-                            {transformedContent}
+                            {alternativeTransform ? alternativeTransformedContent : transformedContent}
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -252,6 +319,33 @@ Kastīte lēkās pa ekrānu kā vecajā Windows! 🏃‍♂️💨`;
                             </Button>
                           </div>
                         </div>
+
+                        {/* Feedback Section */}
+                        {showFeedback && (
+                          <div className="p-4 bg-neutral-800 rounded-lg border border-neutral-600">
+                            <h5 className="text-neutral-200 font-medium mb-3">Is it clear now what to do?</h5>
+                            <div className="flex gap-3">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={handleThumbsUp}
+                                className="flex items-center gap-2 text-green-300 border-green-500/50 hover:bg-green-500/10"
+                              >
+                                <ThumbsUp className="h-4 w-4" />
+                                Jā, saprotu!
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={handleThumbsDown}
+                                className="flex items-center gap-2 text-red-300 border-red-500/50 hover:bg-red-500/10"
+                              >
+                                <ThumbsDown className="h-4 w-4" />
+                                Vēl nesaprotu
+                              </Button>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
