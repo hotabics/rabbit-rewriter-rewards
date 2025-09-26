@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import icon512 from "@/assets/icon512.png";
 
 const Index = () => {
@@ -49,9 +50,11 @@ const Index = () => {
             <Button size="lg" className="wr-button-primary text-lg px-8 py-6">
               📁 Load Extension
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-              📖 View Documentation
-            </Button>
+            <Link to="/documentation">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+                📖 View Documentation
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -200,9 +203,9 @@ const Index = () => {
             Follow the White Rabbit down the productivity hole! 🐰⚡
           </p>
           <div className="flex justify-center gap-6">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/documentation" className="text-muted-foreground hover:text-primary transition-colors">
               Documentation
-            </a>
+            </Link>
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
               GitHub
             </a>
