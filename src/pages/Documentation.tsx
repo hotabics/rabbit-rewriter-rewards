@@ -77,8 +77,14 @@ const Documentation = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground">
-                  Download the White Rabbit extension files from the GitHub repository or use the provided download link.
+                  Download the White Rabbit extension files from the <a href="https://github.com/hotabics/rabbit-rewriter-rewards" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">GitHub repository</a> or use the provided download link.
                 </p>
+                <div className="bg-primary/10 rounded-lg p-4 mt-4">
+                  <h4 className="font-semibold mb-2">📁 GitHub Repository</h4>
+                  <a href="https://github.com/hotabics/rabbit-rewriter-rewards" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-mono text-sm">
+                    https://github.com/hotabics/rabbit-rewriter-rewards
+                  </a>
+                </div>
                 <div className="bg-muted rounded-lg p-4">
                   <img src="/api/placeholder/600/200" alt="Download extension files screenshot" className="w-full rounded border" />
                   <p className="text-sm text-muted-foreground mt-2">Screenshot: Download extension files from GitHub</p>

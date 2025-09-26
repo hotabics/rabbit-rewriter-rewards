@@ -206,7 +206,7 @@ const Index = () => {
             <Link to="/documentation" className="text-muted-foreground hover:text-primary transition-colors">
               Documentation
             </Link>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://github.com/hotabics/rabbit-rewriter-rewards" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               GitHub
             </a>
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
