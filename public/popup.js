@@ -14,11 +14,19 @@ const elements = {
     mode: document.getElementById('mode'),
     tone: document.getElementById('tone'),
     language: document.getElementById('language'),
-    processButton: document.getElementById('processButton')
+    processButton: document.getElementById('processButton'),
+    interactiveTaskButton: document.getElementById('interactiveTaskButton'),
+    podcastButton: document.getElementById('podcastButton')
   },
   footer: {
     optionsLink: document.getElementById('optionsLink'),
-    dailyBonus: document.getElementById('dailyBonus')
+    dailyBonus: document.getElementById('dailyBonus'),
+    profileLink: document.getElementById('profileLink')
+  },
+  premium: {
+    upgradeModal: document.getElementById('upgradeModal'),
+    upgradeCancel: document.getElementById('upgradeCancel'),
+    upgradeConfirm: document.getElementById('upgradeConfirm')
   }
 };
 
@@ -26,6 +34,7 @@ const elements = {
 async function initialize() {
   await loadStats();
   await loadSettings();
+  await checkSubscriptionStatus();
   setupEventListeners();
   checkDailyBonus();
 }
@@ -76,18 +85,30 @@ function setupEventListeners() {
   // Process button
   elements.controls.processButton.addEventListener('click', handleProcessClick);
 
+  // Premium feature buttons
+  elements.controls.interactiveTaskButton.addEventListener('click', handleInteractiveTask);
+  elements.controls.podcastButton.addEventListener('click', handlePodcast);
+
   // Settings persistence
   elements.controls.tone.addEventListener('change', saveTonePreference);
   elements.controls.language.addEventListener('change', saveLanguagePreference);
 
-  // Options link
+  // Footer links
   elements.footer.optionsLink.addEventListener('click', (e) => {
     e.preventDefault();
     chrome.runtime.openOptionsPage();
   });
+  elements.footer.profileLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openProfileSettings();
+  });
 
   // Daily bonus
   elements.footer.dailyBonus.addEventListener('click', handleDailyBonus);
+
+  // Premium modal
+  elements.premium.upgradeCancel.addEventListener('click', closeUpgradeModal);
+  elements.premium.upgradeConfirm.addEventListener('click', handleUpgrade);
 
   // Listen for storage changes to update stats
   chrome.storage.onChanged.addListener((changes, namespace) => {
@@ -290,6 +311,141 @@ function showSuccess(message) {
   document.body.appendChild(successDiv);
   
   setTimeout(() => successDiv.remove(), 3000);
+}
+
+// Check subscription status and update UI
+async function checkSubscriptionStatus() {
+  try {
+    const data = await chrome.storage.sync.get(['subscription']);
+    const subscription = data.subscription || 'free';
+    
+    if (subscription === 'free') {
+      // Show premium buttons with upgrade styling
+      elements.controls.interactiveTaskButton.style.background = 'linear-gradient(45deg, rgba(255,215,0,0.3), rgba(255,165,0,0.3))';
+      elements.controls.podcastButton.style.background = 'linear-gradient(45deg, rgba(255,215,0,0.3), rgba(255,165,0,0.3))';
+      
+      // Add premium badge
+      elements.controls.interactiveTaskButton.innerHTML = '📋 Interactive Task <span style="font-size: 10px; opacity: 0.8;">PREMIUM</span>';
+      elements.controls.podcastButton.innerHTML = '🎧 Convert to Podcast <span style="font-size: 10px; opacity: 0.8;">PREMIUM</span>';
+    }
+  } catch (error) {
+    console.error('Failed to check subscription status:', error);
+  }
+}
+
+// Handle interactive task button click
+async function handleInteractiveTask() {
+  const data = await chrome.storage.sync.get(['subscription']);
+  const subscription = data.subscription || 'free';
+  
+  if (subscription === 'free') {
+    showUpgradeModal();
+    return;
+  }
+  
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (!tab) {
+      showError('No active tab found');
+      return;
+    }
+
+    elements.controls.interactiveTaskButton.disabled = true;
+    elements.controls.interactiveTaskButton.textContent = 'Generating Task...';
+
+    chrome.tabs.sendMessage(tab.id, {
+      type: 'WR_INTERACTIVE_TASK'
+    });
+
+    setTimeout(() => {
+      elements.controls.interactiveTaskButton.disabled = false;
+      elements.controls.interactiveTaskButton.textContent = '📋 Interactive Task (HTML)';
+      window.close();
+    }, 500);
+
+  } catch (error) {
+    console.error('Failed to generate interactive task:', error);
+    showError('Failed to generate interactive task');
+    elements.controls.interactiveTaskButton.disabled = false;
+    elements.controls.interactiveTaskButton.textContent = '📋 Interactive Task (HTML)';
+  }
+}
+
+// Handle podcast button click
+async function handlePodcast() {
+  const data = await chrome.storage.sync.get(['subscription']);
+  const subscription = data.subscription || 'free';
+  
+  if (subscription === 'free') {
+    showUpgradeModal();
+    return;
+  }
+  
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (!tab) {
+      showError('No active tab found');
+      return;
+    }
+
+    elements.controls.podcastButton.disabled = true;
+    elements.controls.podcastButton.textContent = 'Converting to Audio...';
+
+    chrome.tabs.sendMessage(tab.id, {
+      type: 'WR_PODCAST'
+    });
+
+    setTimeout(() => {
+      elements.controls.podcastButton.disabled = false;
+      elements.controls.podcastButton.textContent = '🎧 Convert to Podcast';
+      window.close();
+    }, 500);
+
+  } catch (error) {
+    console.error('Failed to convert to podcast:', error);
+    showError('Failed to convert to podcast');
+    elements.controls.podcastButton.disabled = false;
+    elements.controls.podcastButton.textContent = '🎧 Convert to Podcast';
+  }
+}
+
+// Show upgrade modal
+function showUpgradeModal() {
+  elements.premium.upgradeModal.style.display = 'block';
+}
+
+// Close upgrade modal
+function closeUpgradeModal() {
+  elements.premium.upgradeModal.style.display = 'none';
+}
+
+// Handle upgrade (mock implementation)
+async function handleUpgrade() {
+  try {
+    // In a real implementation, this would redirect to payment processor
+    // For now, we'll just simulate upgrading to premium
+    await chrome.storage.sync.set({ subscription: 'premium' });
+    
+    showSuccess('Upgraded to Premium! 🎉');
+    closeUpgradeModal();
+    
+    // Update button styling
+    elements.controls.interactiveTaskButton.style.background = '';
+    elements.controls.podcastButton.style.background = '';
+    elements.controls.interactiveTaskButton.innerHTML = '📋 Interactive Task (HTML)';
+    elements.controls.podcastButton.innerHTML = '🎧 Convert to Podcast';
+    
+  } catch (error) {
+    console.error('Failed to upgrade:', error);
+    showError('Failed to upgrade. Please try again.');
+  }
+}
+
+// Open profile settings (simplified version)
+function openProfileSettings() {
+  // For now, just show a simple alert
+  // In a full implementation, this would open a proper profile page
+  alert('Profile settings coming soon! You can adjust your knowledge level, skills, and learning style.');
 }
 
 // Initialize when DOM is ready

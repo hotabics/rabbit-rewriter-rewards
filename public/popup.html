@@ -203,12 +203,44 @@
         <button class="action-button" id="processButton">
             Ask White Rabbit (Selection)
         </button>
+        
+        <div style="margin-top: 12px;">
+            <button class="action-button" id="interactiveTaskButton">
+                📋 Interactive Task (HTML)
+            </button>
+        </div>
+        
+        <div style="margin-top: 8px;">
+            <button class="action-button" id="podcastButton">
+                🎧 Convert to Podcast
+            </button>
+        </div>
+    </div>
+    
+    <!-- Premium Upgrade Modal -->
+    <div id="upgradeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: linear-gradient(135deg, #3b82f6, #6366f1); padding: 24px; border-radius: 12px; width: 280px; color: white;">
+            <h3 style="margin: 0 0 16px 0; font-size: 18px; text-align: center;">🚀 Upgrade to Premium</h3>
+            <p style="margin: 0 0 16px 0; font-size: 14px; opacity: 0.9; text-align: center;">Interactive tasks and audio features require Premium</p>
+            <div style="font-size: 12px; margin-bottom: 20px;">
+                <div style="margin-bottom: 8px;">✅ Convert webpages to interactive tasks</div>
+                <div style="margin-bottom: 8px;">✅ Personalized learning paths</div>
+                <div style="margin-bottom: 8px;">✅ Audio/Podcast generation</div>
+                <div style="margin-bottom: 8px;">✅ Advanced progress tracking</div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <button id="upgradeCancel" style="flex: 1; padding: 8px; background: rgba(255,255,255,0.2); border: none; border-radius: 6px; color: white; cursor: pointer;">Maybe Later</button>
+                <button id="upgradeConfirm" style="flex: 1; padding: 8px; background: rgba(255,255,255,0.9); border: none; border-radius: 6px; color: #3b82f6; font-weight: 600; cursor: pointer;">Upgrade Now</button>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
         <a href="#" class="footer-link" id="optionsLink">Options</a>
         <span style="margin: 0 8px; opacity: 0.5;">•</span>
         <a href="#" class="footer-link" id="dailyBonus">Daily Bonus</a>
+        <span style="margin: 0 8px; opacity: 0.5;">•</span>
+        <a href="#" class="footer-link" id="profileLink">Profile</a>
     </div>
 
     <script src="popup.js"></script>

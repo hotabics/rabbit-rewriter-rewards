@@ -21,8 +21,12 @@ async function initializeStorage() {
       health: 5,
       food: 5,
       streak: 0,
-      lastClaimISO: ""
+      lastClaimISO: "",
+      knowledgeLevel: "beginner", // beginner, intermediate, advanced
+      skills: ["programming"], // programming, design, languages, business, etc.
+      learningStyle: "visual" // visual, audio, practical
     },
+    subscription: "free", // free, premium
     settings: {
       apiKey: "",
       baseUrl: "https://api.openai.com/v1",
@@ -37,6 +41,8 @@ async function initializeStorage() {
       summarize: { xp: 6, coins: 2, health: 1, food: 1 },
       translate: { xp: 5, coins: 2, health: 0, food: 1 },
       "explain-step-by-step": { xp: 12, coins: 4, health: 2, food: 2 },
+      "interactive-task": { xp: 15, coins: 6, health: 3, food: 3 },
+      "complete-step": { xp: 3, coins: 1, health: 0, food: 0 },
       daily: { xp: 10, coins: 5, health: 2, food: 2 }
     }
   };
@@ -114,8 +120,11 @@ chrome.commands.onCommand.addListener((command, tab) => {
 // Handle messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'GET_SETTINGS') {
-    chrome.storage.sync.get(['settings']).then(result => {
-      sendResponse(result.settings || {});
+    chrome.storage.sync.get(['settings', 'profile']).then(result => {
+      sendResponse({ 
+        ...result.settings,
+        profile: result.profile || {} 
+      });
     });
     return true; // Will respond asynchronously
   }
