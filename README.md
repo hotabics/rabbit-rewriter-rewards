@@ -1,73 +1,189 @@
-# Welcome to your Lovable project
+# White Rabbit — Feed & Follow
 
-## Project info
+**Chrome Extension (Manifest V3)** that supercharges your text with AI and gamification! 🐰✨
 
-**URL**: https://lovable.dev/projects/72fd7988-6f01-4548-8347-0040c572f03f
+Select any text on any webpage and ask White Rabbit to **rewrite**, **summarize**, **translate**, or create **step-by-step explanations**. Earn XP, Health, Food, and Coins with every successful AI interaction!
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### 🤖 AI-Powered Text Processing
+- **Rewrite** - Improve clarity and tone
+- **Summarize** - Extract key points
+- **Translate** - Convert to different languages  
+- **Explain Step-by-Step** - Break down complex tasks
 
-**Use Lovable**
+### 🎮 Gamification System
+- **Level up** by earning XP
+- **Collect rewards**: Health ❤️, Food 🍖, Coins ⦿
+- **Daily streaks** with bonus rewards
+- **Beautiful progress tracking**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/72fd7988-6f01-4548-8347-0040c572f03f) and start prompting.
+### ⚡ Lightning Fast UX
+- Right-click context menu
+- Keyboard shortcut (`Ctrl+Shift+R`)
+- Non-blocking overlay with streaming results
+- Replace, Copy, Undo, and Claim actions
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔧 Fully Configurable
+- OpenAI-compatible API support
+- Custom base URLs and models
+- Adjustable tone and language preferences
+- Editable reward system
 
-**Use your preferred IDE**
+## 📦 Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Quick Setup (Load Unpacked)
+1. Open `chrome://extensions/`
+2. Enable **Developer mode** (top right toggle)
+3. Click **Load unpacked**
+4. Select the extension folder
+5. 🎉 White Rabbit is ready!
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### First-Time Configuration
+1. Click the White Rabbit icon in your toolbar
+2. Click **Options** at the bottom
+3. Add your **API Key** (OpenAI or compatible provider)
+4. Configure **Base URL** and **Model** if needed
+5. Save settings and start using!
 
-Follow these steps:
+## 🎯 How to Use
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Method 1: Right-Click Menu
+1. **Select any text** on any webpage
+2. **Right-click** → **White Rabbit** → Choose your action
+3. **Watch the magic happen** in the floating overlay
+4. **Click "Mark as Done"** to claim your rewards!
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Method 2: Keyboard Shortcut
+1. **Select text** you want to process
+2. Press **`Ctrl+Shift+R`** (default: rewrite mode)
+3. **Enjoy the results** and claim rewards
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Method 3: Extension Popup
+1. **Select text** first
+2. **Click the White Rabbit icon**
+3. **Choose mode and settings**
+4. **Click "Ask White Rabbit"**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## ⚙️ Configuration
+
+### API Settings
+- **API Key**: Your OpenAI or compatible API key
+- **Base URL**: API endpoint (default: OpenAI)
+- **Model**: AI model to use (default: gpt-4o-mini)
+- **Temperature**: Creativity level (0-1)
+
+### Gamification
+- **Rewards**: Customize XP/coins for each action
+- **Daily Bonus**: Claim every 20 hours
+- **Progress**: Track level, health, food, coins, streaks
+
+### Privacy & Security
+- ✅ **API keys stored locally** (never sent to White Rabbit servers)
+- ✅ **Configurable AI providers** (bring your own API)
+- ✅ **Selection-only processing** (no page scraping)
+- ✅ **Transparent data handling**
+
+## 🛠️ Technical Details
+
+### Architecture
+```
+├── manifest.json          # Extension configuration
+├── background.js          # Service worker (context menu, shortcuts)  
+├── contentScript.js       # Text processing & overlay UI
+├── popup.html/js          # Extension popup interface
+├── options.html/js        # Settings configuration
+├── lib/
+│   ├── aiClient.js        # OpenAI-compatible API client
+│   └── storage.js         # Storage utilities & gamification
+└── assets/               # Icons and images
 ```
 
-**Edit a file directly in GitHub**
+### Manifest V3 Compliance
+- ✅ Service worker background script
+- ✅ Declarative permissions
+- ✅ Content security policy compliant
+- ✅ Modern Chrome APIs
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### API Compatibility
+- **OpenAI** (GPT-3.5, GPT-4, GPT-4o series)
+- **Azure OpenAI** (with custom base URL)
+- **Anthropic Claude** (via compatible proxy)
+- **Local LLMs** (Ollama, LocalAI, etc.)
+- **Custom endpoints** (any OpenAI-compatible API)
 
-**Use GitHub Codespaces**
+## 🎨 Customization
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Reward System
+Edit the rewards JSON in Options to customize XP, coins, health, and food gained from each action:
 
-## What technologies are used for this project?
+```json
+{
+  "rewrite": {"xp": 8, "coins": 3, "health": 1, "food": 1},
+  "summarize": {"xp": 6, "coins": 2, "health": 1, "food": 1},
+  "translate": {"xp": 5, "coins": 2, "health": 0, "food": 1},
+  "explain-step-by-step": {"xp": 12, "coins": 4, "health": 2, "food": 2},
+  "daily": {"xp": 10, "coins": 5, "health": 2, "food": 2}
+}
+```
 
-This project is built with:
+### System Prompts
+Customize how the AI behaves by editing the system prompt in Options.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🐛 Troubleshooting
 
-## How can I deploy this project?
+### Common Issues
 
-Simply open [Lovable](https://lovable.dev/projects/72fd7988-6f01-4548-8347-0040c572f03f) and click on Share -> Publish.
+**"API key is required" error**
+- Go to Options and add your API key
+- Make sure it's valid and has sufficient credits
 
-## Can I connect a custom domain to my Lovable project?
+**Text replacement not working**
+- Try using Copy instead of Replace for complex websites
+- Some sites block content modification
 
-Yes, you can!
+**Extension not loading**
+- Check Developer mode is enabled
+- Reload the extension in chrome://extensions/
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Debug Mode
+1. Open Chrome DevTools (F12)
+2. Check Console for error messages
+3. Look for "White Rabbit" logs
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Rate Limits
+- The extension includes automatic retry logic
+- Consider using a different model if hitting limits
+- Check your API provider's rate limit settings
+
+## 🔒 Privacy Policy
+
+**Data Processing**: Selected text is sent to your configured AI provider for processing. No data is stored or transmitted to White Rabbit servers.
+
+**Storage**: Settings and gamification data are stored locally in Chrome's sync storage.
+
+**API Keys**: Stored securely in Chrome's encrypted storage and never transmitted to third parties.
+
+## 📄 License
+
+MIT License - See LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📞 Support
+
+- **Issues**: Report bugs on GitHub
+- **Feature Requests**: Submit enhancement ideas
+- **Documentation**: Check the wiki for advanced usage
+
+---
+
+**Made with ❤️ by the White Rabbit team**
+
+*Follow the White Rabbit down the productivity hole!* 🐰⚡

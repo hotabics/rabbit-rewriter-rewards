@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "White Rabbit — Feed & Follow",
+  "version": "1.0.0",
+  "description": "Select text and ask White Rabbit to rewrite or explain step-by-step. Earn XP, Health, Food, and Coins.",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "White Rabbit — Feed & Follow"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "options_page": "options.html",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "commands": {
+    "rewrite-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+R"
+      },
+      "description": "Ask White Rabbit to process selected text"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

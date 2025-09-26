@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Rabbit — Options</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .input, .select, .textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .input:focus, .select:focus, .textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .button {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .button-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-secondary:hover {
+            background: #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+        }
+
+        .button-success:hover {
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .status {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .privacy-notice {
+            background: #fffbeb;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .privacy-notice h4 {
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .privacy-notice p {
+            color: #a16207;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🐰</div>
+            <div class="title">White Rabbit Options</div>
+            <div class="subtitle">Configure your AI assistant and gamification settings</div>
+        </div>
+
+        <div id="status"></div>
+
+        <div class="card">
+            <div class="card-title">
+                🤖 AI Configuration
+            </div>
+            
+            <div class="privacy-notice">
+                <h4>🔒 Privacy Notice</h4>
+                <p>Processing selected text may send data to your configured AI provider. Your API key is stored locally and never shared with White Rabbit servers.</p>
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="apiKey">API Key *</label>
+                <input type="password" id="apiKey" class="input" placeholder="sk-..." required>
+                <div class="help-text">Your OpenAI-compatible API key</div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="label" for="baseUrl">Base URL *</label>
+                    <input type="url" id="baseUrl" class="input" value="https://api.openai.com/v1" required>
+                    <div class="help-text">API endpoint URL</div>
+                </div>
+                <div class="form-group">
+                    <label class="label" for="model">Model *</label>
+                    <input type="text" id="model" class="input" value="gpt-4o-mini" required>
+                    <div class="help-text">AI model to use</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="temperature">Temperature (0-1)</label>
+                <input type="number" id="temperature" class="input" min="0" max="1" step="0.1" value="0.3">
+                <div class="help-text">Controls randomness: 0 = deterministic, 1 = very creative</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                ⚙️ Default Settings
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="label" for="defaultTone">Default Tone</label>
+                    <select id="defaultTone" class="select">
+                        <option value="neutral">Neutral</option>
+                        <option value="friendly">Friendly</option>
+                        <option value="academic">Academic</option>
+                        <option value="professional">Professional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="label" for="defaultLanguage">Default Language</label>
+                    <select id="defaultLanguage" class="select">
+                        <option value="original">Keep Original</option>
+                        <option value="en">English</option>
+                        <option value="lv">Latvian</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="systemPrompt">System Prompt</label>
+                <textarea id="systemPrompt" class="textarea" placeholder="System instructions for the AI..."></textarea>
+                <div class="help-text">Instructions that define how the AI should behave</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                🎮 Gamification Settings
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="rewards">Rewards Configuration (JSON)</label>
+                <textarea id="rewards" class="textarea"></textarea>
+                <div class="help-text">Define XP, coins, health, and food rewards for each action</div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="dailyBonusBtn" class="button button-success">
+                    Claim Daily Bonus
+                </button>
+                <div class="help-text">Available every 20 hours</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" id="saveBtn" class="button">Save Settings</button>
+            <button type="button" id="resetBtn" class="button button-secondary">Reset to Defaults</button>
+            <button type="button" id="testBtn" class="button button-secondary">Test API Connection</button>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

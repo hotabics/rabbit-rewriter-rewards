@@ -1,0 +1,239 @@
+/* White Rabbit Extension Styles */
+
+/* Reset and base styles for extension overlay */
+.wr-overlay * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main overlay container */
+.wr-overlay {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 999999 !important;
+  max-width: 420px !important;
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(220, 220, 230, 0.5) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  animation: slideInRight 0.3s ease-out !important;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .wr-overlay {
+    background: rgba(30, 30, 40, 0.95) !important;
+    border-color: rgba(60, 60, 70, 0.5) !important;
+    color: rgb(240, 240, 240) !important;
+  }
+}
+
+/* Header */
+.wr-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 20px 12px !important;
+  border-bottom: 1px solid rgba(220, 220, 230, 0.3) !important;
+}
+
+.wr-title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: rgb(59, 130, 246) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.wr-close {
+  background: none !important;
+  border: none !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  color: rgb(107, 114, 128) !important;
+  padding: 4px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s !important;
+}
+
+.wr-close:hover {
+  background: rgba(107, 114, 128, 0.1) !important;
+}
+
+/* Content area */
+.wr-content {
+  padding: 16px 20px !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+.wr-result {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: rgb(55, 65, 81) !important;
+  white-space: pre-wrap !important;
+  margin-bottom: 16px !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wr-result {
+    color: rgb(210, 210, 220) !important;
+  }
+}
+
+/* Loading state */
+.wr-loading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: rgb(107, 114, 128) !important;
+  font-size: 14px !important;
+}
+
+.wr-spinner {
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid rgba(59, 130, 246, 0.2) !important;
+  border-top: 2px solid rgb(59, 130, 246) !important;
+  border-radius: 50% !important;
+  animation: spin 1s linear infinite !important;
+}
+
+/* Action buttons */
+.wr-actions {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  padding: 12px 20px 20px !important;
+}
+
+.wr-button {
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.wr-button-primary {
+  background: linear-gradient(135deg, rgb(59, 130, 246), rgb(99, 102, 241)) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2) !important;
+}
+
+.wr-button-primary:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3) !important;
+}
+
+.wr-button-secondary {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: rgb(59, 130, 246) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+
+.wr-button-secondary:hover {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+.wr-button-ghost {
+  background: transparent !important;
+  color: rgb(107, 114, 128) !important;
+  border: 1px solid rgba(107, 114, 128, 0.2) !important;
+}
+
+.wr-button-ghost:hover {
+  background: rgba(107, 114, 128, 0.1) !important;
+}
+
+.wr-button-success {
+  background: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74)) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2) !important;
+}
+
+.wr-button-success:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3) !important;
+}
+
+/* Reward notification */
+.wr-reward-notification {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 999998 !important;
+  background: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74)) !important;
+  color: white !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3) !important;
+  animation: rewardPulse 0.6s ease-out !important;
+}
+
+/* Error notification */
+.wr-error-notification {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 999998 !important;
+  background: rgb(239, 68, 68) !important;
+  color: white !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rewardPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Hide scrollbars for content area */
+.wr-content::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.wr-content::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.wr-content::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.3) !important;
+  border-radius: 2px !important;
+}
+
+.wr-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.5) !important;
+}
