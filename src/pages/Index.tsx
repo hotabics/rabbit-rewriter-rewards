@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import icon512 from "@/assets/icon512.png";
+import logo from "@/assets/logo.png";
 
 const Index = () => {
   return (
@@ -11,7 +11,7 @@ const Index = () => {
       <section className="relative py-20 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <img src={icon512} alt="White Rabbit Icon" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-xl wr-gradient-primary p-4" />
+            <img src={logo} alt="White Rabbit Icon" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-xl wr-gradient-primary p-4" />
           </div>
           
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -222,7 +222,7 @@ const Index = () => {
       <footer className="py-12 px-4 border-t bg-muted/20">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-6">
-            <img src={icon512} alt="White Rabbit" className="w-12 h-12 mx-auto rounded-lg wr-gradient-primary p-2" />
+            <img src={logo} alt="White Rabbit" className="w-12 h-12 mx-auto rounded-lg wr-gradient-primary p-2" />
           </div>
           <p className="text-muted-foreground mb-6">
             Follow the White Rabbit down the productivity hole! 🐰⚡
