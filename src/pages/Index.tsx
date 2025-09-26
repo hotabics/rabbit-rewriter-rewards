@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import WhiteRabbitWidget from "@/components/WhiteRabbitWidget";
 import icon512 from "@/assets/icon512.png";
 
 const Index = () => {
@@ -221,9 +220,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-      
-      {/* Interactive White Rabbit Widget */}
-      <WhiteRabbitWidget />
     </main>
   );
 };
