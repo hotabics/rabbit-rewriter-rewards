@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
 import ComparisonTable from "./ComparisonTable";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface UpsellModalProps {
   isOpen: boolean;
