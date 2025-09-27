@@ -21,6 +21,25 @@ const translations = {
     'hero.viewDocs': '📖 View Documentation',
     'hero.supportCoffee': '☕ If you like White Rabbit - Buy Me a Coffee',
     
+    // Demo page
+    'demo.title': 'White Rabbit Interactive Demo',
+    'demo.subtitle': 'Experience all features with real-time AI demonstrations',
+    'demo.planToggle': 'Plan',
+    'demo.askRabbit': 'Ask White Rabbit',
+    'demo.loading': 'Processing...',
+    'demo.copy': 'Copy',
+    'demo.copied': 'Copied!',
+    'demo.markDone': 'Mark as Done',
+    'demo.gainedXP': '+15 XP',
+    'demo.gainedCoins': '+5 Coins',
+    'demo.playAudio': 'Play',
+    'demo.downloadAudio': 'Download',
+    'demo.demoText': 'This complex sentence has many unnecessary words and redundant descriptions that make it difficult to understand.',
+    'demo.demoTextSummary': 'Complete guide to CSS Grid layout system with responsive design patterns.',
+    'demo.demoTextTranslate': 'Good morning! How are you today?',
+    'demo.demoTextExplain': 'Create a simple Express.js server with basic routing',
+    'demo.demoHTML': '<article><h2>Getting Started with CSS Grid</h2><p>CSS Grid helps you build complex, responsive layouts.</p><h3>Basic Concepts</h3><p>Grid container, grid items, tracks, gaps.</p></article>',
+    
     // Features
     'features.title': '✨ Powerful Features',
     'features.rewrite.title': '✍️ Rewrite',
@@ -99,6 +118,25 @@ const translations = {
     'hero.tryDemo': '🎬 Izmēģināt Demo',
     'hero.viewDocs': '📖 Skatīt Dokumentāciju',
     'hero.supportCoffee': '☕ Ja patīk White Rabbit - Nopērc kafiju',
+    
+    // Demo page
+    'demo.title': 'White Rabbit Interaktīvais Demo',
+    'demo.subtitle': 'Piedzīvo visas funkcijas ar reāllaika AI demonstrācijām',
+    'demo.planToggle': 'Plāns',
+    'demo.askRabbit': 'Jautāt White Rabbit',
+    'demo.loading': 'Apstrādā...',
+    'demo.copy': 'Kopēt',
+    'demo.copied': 'Nokopēts!',
+    'demo.markDone': 'Atzīmēt kā Pabeigtu',
+    'demo.gainedXP': '+15 XP',
+    'demo.gainedCoins': '+5 Monētas',
+    'demo.playAudio': 'Atskaņot',
+    'demo.downloadAudio': 'Lejupielādēt',
+    'demo.demoText': 'Šis sarežģītais teikums satur daudz nevajadzīgu vārdu un liekas aprakstus, kas to padara grūti saprotamu.',
+    'demo.demoTextSummary': 'Pilnīgs ceļvedis CSS Grid izkārtojuma sistēmai ar responsīviem dizaina modeļiem.',
+    'demo.demoTextTranslate': 'Labrīt! Kā tev šodien iet?',
+    'demo.demoTextExplain': 'Izveido vienkāršu Express.js serveri ar pamata maršrutēšanu',
+    'demo.demoHTML': '<article><h2>Darba sākšana ar CSS Grid</h2><p>CSS Grid palīdz veidot sarežģītus, responsīvus izkārtojumus.</p><h3>Pamata koncepti</h3><p>Grid konteiners, grid elementi, tracks, gaps.</p></article>',
     
     // Features
     'features.title': '✨ Spēcīgas Funkcijas',
