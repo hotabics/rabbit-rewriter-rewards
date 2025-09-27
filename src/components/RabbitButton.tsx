@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
